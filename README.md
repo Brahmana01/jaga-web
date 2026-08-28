@@ -1,16 +1,100 @@
-# React + Vite
+# JAGA Web Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+JAGA — **Jangan Asal Gadal Aplikasi** — adalah template website platform keamanan digital yang dirancang untuk membantu pengguna mengenali risiko aplikasi, memahami keamanan digital, serta mendapatkan informasi dan bantuan yang relevan.
 
-Currently, two official plugins are available:
+Template ini menggunakan pendekatan antarmuka modern, responsif, dan interaktif dengan berbagai micro-interaction serta animasi ringan.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tentang Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+JAGA merupakan konsep platform digital safety yang berfokus pada:
 
-## Expanding the ESLint configuration
+- Pemeriksaan aplikasi sebelum digunakan
+- Edukasi keamanan digital
+- Pelaporan aplikasi atau aktivitas mencurigakan
+- Bantuan bagi pengguna yang mengalami masalah
+- Penyampaian informasi keamanan secara sederhana
+- Pembangunan ekosistem digital yang lebih aman
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Project ini disiapkan sebagai **web template** sehingga struktur dan tampilannya dapat dikembangkan kembali sesuai kebutuhan project baru.
+
+---
+
+## Fitur Utama
+
+### 1. Cek Aplikasi
+
+Pengguna dapat memasukkan nama aplikasi untuk melakukan pemeriksaan berdasarkan indikator keamanan yang tersedia.
+
+Fokus pemeriksaan meliputi:
+
+- Legalitas dan status aplikasi
+- Indikasi risiko keamanan
+- Perlindungan data pengguna
+
+### 2. Edukasi Keamanan Digital
+
+Halaman edukasi menyediakan materi mengenai:
+
+- Pinjaman online ilegal
+- Perlindungan data pribadi
+- Aplikasi berbahaya
+- Penipuan digital
+- Keamanan penggunaan layanan digital
+
+### 3. Pelaporan
+
+Pengguna dapat diarahkan ke fitur pelaporan untuk menyampaikan informasi mengenai aplikasi atau aktivitas yang mencurigakan.
+
+### 4. Bantuan Korban
+
+Menyediakan informasi dan jalur bantuan untuk pengguna yang membutuhkan panduan setelah mengalami masalah keamanan digital.
+
+### 5. Animasi dan Interaksi
+
+Template menggunakan berbagai elemen interaktif, antara lain:
+
+- Scroll reveal animation
+- Typewriter animation
+- Animated search placeholder
+- Floating elements
+- Hover micro-interactions
+- Security shield animation
+- Scanning effect
+- Network/parallax visual
+- 2D/2.5D visual effects
+
+---
+
+## Teknologi
+
+Project ini dibangun menggunakan:
+
+- **React**
+- **Vite**
+- **JavaScript / JSX**
+- **React Router**
+- **Lucide React**
+- **CSS**
+
+---
+
+## Persyaratan
+
+Pastikan perangkat sudah memiliki:
+
+- Node.js
+- npm
+- Git
+
+Versi Node.js disarankan menggunakan versi LTS.
+
+---
+
+## Instalasi
+
+Clone repository:
+
+```bash
+git clone https://github.com/USERNAME/jaga-web-template.git
