@@ -1,0 +1,884 @@
+/* =========================================================
+   JAGA — EDUCATION PAGE
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.education-page {
+  position: relative;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.education-header {
+  position: relative;
+  margin-bottom: 34px;
+}
+
+
+.education-header-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  color: var(--green-600);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: .08em;
+}
+
+
+.education-header-badge-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background:
+    rgba(16,185,129,.10);
+
+  color:
+    var(--green-600);
+
+  box-shadow:
+    0 0 0 5px
+    rgba(16,185,129,.035);
+}
+
+
+.education-header-title-wrap {
+  position: relative;
+
+  width: fit-content;
+}
+
+
+.education-header h1 {
+  margin: 0;
+
+  font-size:
+    clamp(38px, 5vw, 62px);
+
+  line-height:
+    .98;
+
+  letter-spacing:
+    -.035em;
+}
+
+
+.education-header h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      var(--navy-950),
+      var(--green-600)
+    );
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  color:
+    transparent;
+}
+
+
+.education-header-spark {
+
+  position: absolute;
+
+  right: -30px;
+
+  bottom: 5px;
+
+  width: 30px;
+
+  height: 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color:
+    var(--green-600);
+
+  background:
+    rgba(16,185,129,.08);
+
+  animation:
+    educationSparkFloat
+    3s
+    ease-in-out
+    infinite;
+}
+
+
+.education-header p {
+
+  max-width:
+    760px;
+
+  margin:
+    18px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    15px;
+
+  line-height:
+    1.7;
+}
+
+
+.education-header-line {
+
+  width:
+    70px;
+
+  height:
+    3px;
+
+  margin-top:
+    18px;
+
+  border-radius:
+    99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--green-600),
+      transparent
+    );
+
+}
+
+
+/* =========================================================
+   CATEGORY SECTION
+========================================================= */
+
+.education-section {
+  position: relative;
+}
+
+
+.education-category-grid {
+  margin-top:
+    6px;
+}
+
+
+.education-category-card-v2 {
+
+  position:
+    relative;
+
+  min-height:
+    235px;
+
+  padding:
+    25px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    rgba(14,46,77,.08);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+
+.education-category-card-v2:hover {
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 18px 38px
+    rgba(14,46,77,.10);
+
+  border-color:
+    rgba(16,185,129,.18);
+}
+
+
+/* =========================================================
+   CATEGORY TOP
+========================================================= */
+
+.education-category-top {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+}
+
+
+.education-category-icon-v2 {
+
+  width:
+    50px;
+
+  height:
+    50px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    15px;
+
+  transition:
+    transform .3s ease;
+}
+
+
+.education-category-card-v2:hover
+.education-category-icon-v2 {
+
+  transform:
+    rotate(-5deg)
+    scale(1.08);
+}
+
+
+.education-category-number {
+
+  color:
+    #A1AFBD;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .10em;
+}
+
+
+/* =========================================================
+   TONES
+========================================================= */
+
+.education-tone-green
+.education-category-icon-v2 {
+
+  color:
+    #0BA96D;
+
+  background:
+    rgba(16,185,129,.10);
+}
+
+
+.education-tone-blue
+.education-category-icon-v2 {
+
+  color:
+    #4078E8;
+
+  background:
+    rgba(64,120,232,.10);
+}
+
+
+.education-tone-orange
+.education-category-icon-v2 {
+
+  color:
+    #EA9510;
+
+  background:
+    rgba(234,149,16,.11);
+}
+
+
+/* =========================================================
+   CATEGORY CONTENT
+========================================================= */
+
+.education-category-copy {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+.education-category-card-v2 h2 {
+
+  margin:
+    18px 0 7px;
+
+  font-size:
+    19px;
+
+}
+
+
+.education-category-card-v2 p {
+
+  max-width:
+    330px;
+
+  margin:
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================================================
+   CATEGORY FOOTER
+========================================================= */
+
+.education-category-footer {
+
+  position:
+    absolute;
+
+  left:
+    25px;
+
+  right:
+    25px;
+
+  bottom:
+    23px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  color:
+    var(--green-600);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+}
+
+
+.education-arrow {
+
+  width:
+    28px;
+
+  height:
+    28px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid
+    rgba(16,185,129,.12);
+
+  border-radius:
+    9px;
+
+  background:
+    rgba(16,185,129,.06);
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+
+.education-category-card-v2:hover
+.education-arrow {
+
+  transform:
+    translateX(4px);
+
+  background:
+    rgba(16,185,129,.11);
+}
+
+
+/* =========================================================
+   CARD GLOW
+========================================================= */
+
+.education-card-glow {
+
+  position:
+    absolute;
+
+  width:
+    150px;
+
+  height:
+    150px;
+
+  right:
+    -85px;
+
+  top:
+    -75px;
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(16,185,129,.10),
+      transparent 68%
+    );
+
+  opacity:
+    .6;
+
+  transition:
+    transform .4s ease,
+    opacity .4s ease;
+}
+
+
+.education-category-card-v2:hover
+.education-card-glow {
+
+  transform:
+    scale(1.35);
+
+  opacity:
+    1;
+}
+
+
+/* =========================================================
+   ARTICLE SECTION
+========================================================= */
+
+.education-section-title {
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    30px;
+
+  margin-bottom:
+    20px;
+}
+
+
+.education-section-title > p {
+
+  max-width:
+    450px;
+
+  margin:
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================================================
+   ARTICLE CARDS
+========================================================= */
+
+.education-article-card-v2 {
+
+  position:
+    relative;
+
+  min-height:
+    225px;
+
+  padding:
+    23px;
+
+  overflow:
+    hidden;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+
+.education-article-card-v2:hover {
+
+  transform:
+    translateY(-7px);
+
+  box-shadow:
+    0 18px 34px
+    rgba(14,46,77,.09);
+}
+
+
+.education-article-top {
+
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+}
+
+
+.education-article-icon {
+
+  width:
+    36px;
+
+  height:
+    36px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    11px;
+
+  color:
+    var(--green-600);
+
+  background:
+    rgba(16,185,129,.07);
+
+  transition:
+    transform .3s ease;
+}
+
+
+.education-article-card-v2:hover
+.education-article-icon {
+
+  transform:
+    translateY(-3px)
+    rotate(4deg);
+}
+
+
+/* =========================================================
+   ARTICLE COPY
+========================================================= */
+
+.education-article-copy {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+.education-article-card-v2 h3 {
+
+  margin:
+    19px 0 7px;
+
+  font-size:
+    18px;
+
+  line-height:
+    1.3;
+}
+
+
+.education-article-card-v2 p {
+
+  max-width:
+    350px;
+
+  margin:
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================================================
+   ARTICLE LINK
+========================================================= */
+
+.education-article-link {
+
+  position:
+    absolute;
+
+  left:
+    23px;
+
+  bottom:
+    22px;
+
+  z-index:
+    4;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  color:
+    var(--green-600);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  text-decoration:
+    none;
+
+  transition:
+    gap .25s ease;
+}
+
+
+.education-article-link:hover {
+
+  gap:
+    10px;
+}
+
+
+/* =========================================================
+   ARTICLE ORB
+========================================================= */
+
+.education-article-orb {
+
+  position:
+    absolute;
+
+  width:
+    130px;
+
+  height:
+    130px;
+
+  right:
+    -80px;
+
+  bottom:
+    -65px;
+
+  border-radius:
+    50%;
+
+  border:
+    1px solid
+    rgba(16,185,129,.10);
+
+  transition:
+    transform .4s ease;
+}
+
+
+.education-article-card-v2:hover
+.education-article-orb {
+
+  transform:
+    scale(1.25);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes educationSparkFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity:
+      .65;
+  }
+
+  50% {
+    transform:
+      translateY(-5px)
+      rotate(8deg);
+
+    opacity:
+      1;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .education-section-title {
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      8px;
+
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .education-header h1 {
+
+    font-size:
+      38px;
+
+  }
+
+
+  .education-header-spark {
+
+    right:
+      -24px;
+
+  }
+
+
+  .education-category-card-v2 {
+
+    min-height:
+      220px;
+
+  }
+
+
+  .education-category-footer {
+
+    bottom:
+      20px;
+
+  }
+
+
+  .education-article-card-v2 {
+
+    min-height:
+      215px;
+
+  }
+
+}

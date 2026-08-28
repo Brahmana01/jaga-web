@@ -1,0 +1,1248 @@
+/* ==================================================
+   JAGA GLOBAL MOTION SYSTEM
+   FINAL / CLEAN VERSION
+================================================== */
+
+
+/* ==================================================
+   ACCESSIBILITY
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==================================================
+   PAGE ENTER
+================================================== */
+
+.page {
+  animation:
+    pageEnter
+    0.45s
+    cubic-bezier(.2, .8, .2, 1)
+    both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==================================================
+   ADMIN PAGE ENTER
+================================================== */
+
+.admin-main > * {
+  animation:
+    pageEnter
+    0.45s
+    cubic-bezier(.2, .8, .2, 1)
+    both;
+}
+
+
+/* ==================================================
+   GLOBAL CARD MOTION
+================================================== */
+
+.card {
+  transition:
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.card:hover {
+  border-color:
+    rgba(18, 183, 106, .16);
+
+  box-shadow:
+    0 10px 28px
+    rgba(15, 23, 42, .055);
+}
+
+
+/* ==================================================
+   INTERACTIVE CARD
+================================================== */
+
+.interactive-card {
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.interactive-card:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(18, 183, 106, .24);
+
+  box-shadow:
+    0 16px 35px
+    rgba(15, 23, 42, .075);
+}
+
+
+/* ==================================================
+   BUTTON MOTION
+================================================== */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+}
+
+.btn:hover {
+  transform:
+    translateY(-1px);
+}
+
+.btn:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ==================================================
+   BUTTON SHINE
+================================================== */
+
+.btn-primary::after,
+.btn-danger::after {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  transform: skewX(-20deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transition:
+    left .55s ease;
+
+  pointer-events: none;
+}
+
+.btn-primary:hover::after,
+.btn-danger:hover::after {
+  left: 150%;
+}
+
+
+/* ==================================================
+   INPUT MOTION
+================================================== */
+
+.input {
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+.input:focus {
+  border-color:
+    var(--green-600);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(18, 183, 106, .10);
+}
+
+
+/* ==================================================
+   NAVBAR LINK
+================================================== */
+
+.navbar-link {
+  transition:
+    color .18s ease;
+}
+
+
+/* ==================================================
+   FOOTER LINK
+================================================== */
+
+.footer-link {
+  transition:
+    color .18s ease,
+    transform .18s ease;
+}
+
+.footer-link:hover {
+  transform:
+    translateX(4px);
+}
+
+
+/* ==================================================
+   GLOBAL REVEAL
+================================================== */
+
+.jaga-reveal {
+  opacity: 0;
+
+  transition:
+    opacity .7s ease,
+    transform .7s
+      cubic-bezier(.2, .8, .2, 1);
+
+  transition-delay:
+    var(--reveal-delay, 0ms);
+}
+
+.jaga-reveal-up {
+  transform:
+    translateY(30px);
+}
+
+.jaga-reveal-down {
+  transform:
+    translateY(-30px);
+}
+
+.jaga-reveal-left {
+  transform:
+    translateX(-30px);
+}
+
+.jaga-reveal-right {
+  transform:
+    translateX(30px);
+}
+
+.jaga-reveal-scale {
+  transform:
+    scale(.94);
+}
+
+.jaga-reveal.is-visible {
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+}
+
+
+/* ==================================================
+   STAGGER
+================================================== */
+
+.jaga-stagger > * {
+  opacity: 0;
+
+  transform:
+    translateY(20px);
+
+  animation:
+    staggerEnter
+    .65s
+    cubic-bezier(.2, .8, .2, 1)
+    forwards;
+}
+
+.jaga-stagger > *:nth-child(1) {
+  animation-delay: .05s;
+}
+
+.jaga-stagger > *:nth-child(2) {
+  animation-delay: .12s;
+}
+
+.jaga-stagger > *:nth-child(3) {
+  animation-delay: .19s;
+}
+
+.jaga-stagger > *:nth-child(4) {
+  animation-delay: .26s;
+}
+
+.jaga-stagger > *:nth-child(5) {
+  animation-delay: .33s;
+}
+
+.jaga-stagger > *:nth-child(6) {
+  animation-delay: .40s;
+}
+
+@keyframes staggerEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ==================================================
+   ICON INTERACTION
+================================================== */
+
+.icon-circle {
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.interactive-card:hover
+.icon-circle {
+  transform:
+    scale(1.08)
+    rotate(-4deg);
+
+  box-shadow:
+    0 8px 18px
+    rgba(15, 23, 42, .08);
+}
+
+
+/* ==================================================
+   BADGE
+================================================== */
+
+.badge {
+  transition:
+    transform .18s ease;
+}
+
+.badge:hover {
+  transform:
+    translateY(-1px);
+}
+
+
+/* ==================================================
+   IMAGE / ILLUSTRATION
+================================================== */
+
+.motion-image {
+  transition:
+    transform .3s ease;
+}
+
+.interactive-card:hover
+.motion-image {
+  transform:
+    translateY(-5px)
+    scale(1.025);
+}
+
+
+/* ==================================================
+   LOADING SPINNER
+================================================== */
+
+.loading-spinner {
+  animation:
+    jagaSpin
+    .8s
+    linear
+    infinite;
+}
+
+@keyframes jagaSpin {
+  to {
+    transform:
+      rotate(360deg);
+  }
+}
+
+
+/* ==================================================
+   TOAST
+================================================== */
+
+.toast {
+  animation:
+    toastEnter
+    .3s
+    cubic-bezier(.2, .8, .2, 1)
+    both;
+}
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px)
+      scale(.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* ==================================================
+   EMPTY / ERROR
+================================================== */
+
+.empty-state,
+.error-state {
+  animation:
+    softAppear
+    .4s
+    ease
+    both;
+}
+
+@keyframes softAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ==================================================
+   EDUCATION MOTION
+================================================== */
+
+
+/* CATEGORY ICON */
+
+.education-category-icon {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.education-category-card:hover
+.education-category-icon {
+  transform:
+    translateY(-3px)
+    rotate(-4deg);
+
+  box-shadow:
+    0 9px 20px
+    rgba(15,23,42,.08);
+}
+
+
+/* CATEGORY TITLE */
+
+.education-category-card h2 {
+  transition:
+    color .2s ease;
+}
+
+.education-category-card:hover h2 {
+  color:
+    var(--green-700);
+}
+
+
+/* CATEGORY LINK */
+
+.education-read-more {
+  transition:
+    transform .2s ease;
+}
+
+.education-category-card:hover
+.education-read-more {
+  transform:
+    translateX(4px);
+}
+
+
+/* ARTICLE ICON */
+
+.education-article-icon {
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.education-article-card:hover
+.education-article-icon {
+  transform:
+    rotate(-5deg)
+    scale(1.08);
+
+  background:
+    var(--green-100);
+}
+
+
+/* ARTICLE LINK */
+
+.education-article-link {
+  transition:
+    transform .2s ease;
+}
+
+.education-article-card:hover
+.education-article-link {
+  transform:
+    translateX(4px);
+}
+
+
+/* ==================================================
+   TRUST ECOSYSTEM
+================================================== */
+
+
+/* NODE PULSE */
+
+.trust-node {
+  animation:
+    trustNodePulse
+    2.8s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    var(--node-delay);
+
+  will-change:
+    transform,
+    box-shadow;
+}
+
+@keyframes trustNodePulse {
+
+  0%,
+  55%,
+  100% {
+
+    transform:
+      translate3d(
+        var(--trust-front-x),
+        var(--trust-front-y),
+        0
+      )
+      scale(1);
+
+  }
+
+  62% {
+
+    transform:
+      translate3d(
+        var(--trust-front-x),
+        var(--trust-front-y),
+        0
+      )
+      scale(1.025);
+
+    box-shadow:
+      inset 0 0 25px
+        rgba(255,255,255,.02),
+
+      0 0 0 6px
+        rgba(67,225,160,.05),
+
+      0 0 25px
+        rgba(67,225,160,.18);
+
+  }
+
+  70% {
+
+    transform:
+      translate3d(
+        var(--trust-front-x),
+        var(--trust-front-y),
+        0
+      )
+      scale(1);
+
+    box-shadow:
+      inset 0 0 25px
+        rgba(255,255,255,.02);
+
+  }
+}
+
+
+/* ==================================================
+   TRUST DATA FLOW
+================================================== */
+
+.trust-connector > span {
+
+  position: absolute;
+
+  top: 50%;
+  left: -7px;
+
+  width: 7px;
+  height: 7px;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    #43E1A0;
+
+  animation:
+    trustDataFlow
+    2.8s
+    linear
+    infinite;
+
+  animation-delay:
+    var(--signal-delay);
+
+  will-change:
+    left,
+    opacity;
+}
+
+@keyframes trustDataFlow {
+
+  0% {
+    left: -7px;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    left:
+      calc(100% - 7px);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* ==================================================
+   TRUST SIGNAL GLOW
+================================================== */
+
+.trust-connector > span {
+
+  animation-name:
+    trustDataFlow,
+    trustSignalGlow;
+
+  animation-duration:
+    2.8s,
+    2.8s;
+
+  animation-timing-function:
+    linear,
+    ease-in-out;
+
+  animation-iteration-count:
+    infinite,
+    infinite;
+
+  animation-delay:
+    var(--signal-delay),
+    var(--signal-delay);
+}
+
+@keyframes trustSignalGlow {
+
+  0%,
+  15% {
+
+    box-shadow:
+      0 0 5px
+      rgba(67,225,160,.5);
+
+  }
+
+  30%,
+  65% {
+
+    box-shadow:
+      0 0 13px
+      rgba(67,225,160,1);
+
+  }
+
+  80%,
+  100% {
+
+    box-shadow:
+      0 0 5px
+      rgba(67,225,160,.4);
+
+  }
+
+}
+
+
+/* ==================================================
+   TRUST NODE HOVER
+================================================== */
+
+.trust-node {
+
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.trust-node:hover {
+
+  border-color:
+    rgba(67,225,160,.32);
+
+  background:
+    rgba(67,225,160,.06);
+
+  box-shadow:
+    0 0 25px
+    rgba(67,225,160,.09);
+}
+
+.trust-node-icon {
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.trust-node:hover
+.trust-node-icon {
+
+  transform:
+    scale(1.1);
+
+  background:
+    rgba(67,225,160,.14);
+}
+
+
+/* ==================================================
+   TRUST BACKGROUND PARALLAX
+================================================== */
+
+.trust-network-bg {
+
+  animation:
+    trustBackgroundFloat
+    9s
+    ease-in-out
+    infinite;
+
+  will-change:
+    opacity;
+}
+
+@keyframes trustBackgroundFloat {
+
+  0%,
+  100% {
+    opacity: .055;
+  }
+
+  50% {
+    opacity: .085;
+  }
+
+}
+
+
+/* ==================================================
+   SCENARIO CHARACTER
+   FIXED — NO OVERSCALE
+================================================== */
+
+.scenario-character img {
+
+  animation:
+    characterFloat
+    4s
+    ease-in-out
+    infinite;
+
+  will-change:
+    transform;
+}
+
+@keyframes characterFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-5px)
+      rotate(-1deg)
+      scale(1);
+
+  }
+
+}
+
+
+/* SCENARIO HOVER */
+
+.scenario-card:hover
+.scenario-character img {
+
+  animation-play-state:
+    paused;
+
+  transform:
+    translateY(-7px)
+    scale(1.03);
+
+}
+
+
+/* ==================================================
+   SCENARIO ALERT
+================================================== */
+
+.scenario-alert {
+
+  animation:
+    scenarioPulse
+    2.8s
+    ease-in-out
+    infinite;
+
+  will-change:
+    transform;
+}
+
+@keyframes scenarioPulse {
+
+  0%,
+  70%,
+  100% {
+
+    transform:
+      scale(1);
+
+  }
+
+  76% {
+
+    transform:
+      scale(1.12);
+
+  }
+
+  82% {
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+
+/* ==================================================
+   QUICK ACTION CARDS
+================================================== */
+
+.quick-card {
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.quick-card:hover {
+
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(18,183,106,.22);
+
+  box-shadow:
+    0 14px 30px
+    rgba(15,23,42,.07);
+}
+
+.quick-card .icon-circle {
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.quick-card:hover
+.icon-circle {
+
+  transform:
+    scale(1.08)
+    rotate(-4deg);
+
+  box-shadow:
+    0 7px 18px
+    rgba(15,23,42,.08);
+}
+
+
+/* ==================================================
+   JOURNEY
+================================================== */
+
+.journey-number {
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.journey-card:hover
+.journey-number {
+
+  transform:
+    scale(1.12);
+
+  box-shadow:
+    0 5px 15px
+    rgba(18,183,106,.18);
+}
+
+.journey-icon {
+
+  transition:
+    transform .25s ease;
+}
+
+.journey-card:hover
+.journey-icon {
+
+  transform:
+    rotate(-8deg);
+}
+
+
+/* ARROW */
+
+.journey-arrow svg {
+
+  animation:
+    journeyArrow
+    2.4s
+    ease-in-out
+    infinite;
+
+}
+
+@keyframes journeyArrow {
+
+  0%,
+  60%,
+  100% {
+
+    transform:
+      translateX(0);
+
+    opacity:
+      .4;
+
+  }
+
+  25% {
+
+    transform:
+      translateX(5px);
+
+    opacity:
+      1;
+
+  }
+
+}
+
+
+/* ARROW LINE */
+
+.journey-arrow-line {
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.journey-arrow-line::after {
+
+  content: '';
+
+  position: absolute;
+
+  left: -100%;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--green-600),
+      transparent
+    );
+
+  animation:
+    journeyLineFlow
+    3s
+    ease-in-out
+    infinite;
+}
+
+@keyframes journeyLineFlow {
+
+  0% {
+    left: -100%;
+  }
+
+  55% {
+    left: 100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+
+}
+
+
+/* ==================================================
+   WHY JAGA CTA
+================================================== */
+
+.why-jaga-card .btn-primary {
+
+  width: fit-content;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.why-jaga-card .btn-primary:hover {
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 10px 24px
+    rgba(18,183,106,.24);
+}
+
+.why-jaga-card .btn-primary svg {
+
+  transition:
+    transform .25s ease;
+}
+
+.why-jaga-card .btn-primary:hover svg {
+
+  transform:
+    translateX(5px);
+}
+
+
+/* CTA SIGNAL */
+
+.why-jaga-signal-dot {
+
+  box-shadow:
+    0 0 0 0
+    rgba(57,217,138,.45);
+
+  animation:
+    whySignalPulse
+    2.4s
+    ease-out
+    infinite;
+}
+
+@keyframes whySignalPulse {
+
+  0% {
+
+    box-shadow:
+      0 0 0 0
+      rgba(57,217,138,.45);
+
+  }
+
+  60% {
+
+    box-shadow:
+      0 0 0 7px
+      rgba(57,217,138,0);
+
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 0 0
+      rgba(57,217,138,0);
+
+  }
+
+}
+
+
+/* ==================================================
+   RESPONSIVE MOTION
+================================================== */
+
+@media (max-width: 600px) {
+
+  .interactive-card:hover {
+    transform:
+      translateY(-2px);
+  }
+
+  .scenario-card:hover
+  .scenario-character img {
+
+    transform:
+      translateY(-4px)
+      scale(1.02);
+
+  }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .page,
+  .admin-main > *,
+  .jaga-stagger > *,
+  .loading-spinner,
+  .toast,
+  .empty-state,
+  .error-state,
+  .trust-node,
+  .trust-connector > span,
+  .trust-network-bg,
+  .scenario-character img,
+  .scenario-alert,
+  .journey-arrow svg,
+  .journey-arrow-line::after,
+  .why-jaga-signal-dot,
+  .micro-search svg,
+  .micro-brain svg,
+  .micro-report svg path,
+  .micro-report svg line,
+  .micro-verify svg path,
+  .micro-shield svg,
+  .security-shield,
+  .security-shield-svg,
+  .shield-glow,
+  .shield-scan-line,
+  .shield-orbit-one,
+  .shield-orbit-two,
+  .shield-status,
+  .shield-particle {
+
+    animation:
+      none !important;
+
+  }
+
+  .card,
+  .interactive-card,
+  .btn,
+  .input,
+  .quick-card,
+  .journey-number,
+  .journey-icon,
+  .trust-node,
+  .trust-node-icon,
+  .why-jaga-card .btn-primary {
+
+    transition:
+      none !important;
+
+  }
+
+}
