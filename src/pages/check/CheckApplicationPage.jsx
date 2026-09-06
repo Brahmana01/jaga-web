@@ -24,12 +24,24 @@ import Reveal
 import TypewriterInput
   from '../../components/animation/TypewriterInput'
 
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 // ==============================================
 // PAGE
 // ==============================================
 
 function CheckApplicationPage() {
+  const [query, setQuery] = useState('')
+  const navigate = useNavigate()
+
+  const handleSearch = () => {
+    if (!query.trim()) {
+      return  // jangan lakukan apa-apa kalau kosong
+    }
+    navigate(`/hasil-pemeriksaan?q=${encodeURIComponent(query)}`)
+  }
 
   const features = [
 
@@ -162,27 +174,20 @@ function CheckApplicationPage() {
 
               <div className="search-box check-search">
 
-                <TypewriterInput />
+                <TypewriterInput
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
 
-
-                <Link
-                  to="/hasil-pemeriksaan"
+                <button
+                  type="button"
+                  onClick={handleSearch}
                   className="btn btn-primary check-search-button"
                 >
-
-                  <Search
-                    size={17}
-                  />
-
-                  <span>
-                    Periksa
-                  </span>
-
-                  <ArrowRight
-                    size={15}
-                  />
-
-                </Link>
+                  <Search size={17} />
+                  <span>Periksa</span>
+                  <ArrowRight size={15} />
+                </button>
 
               </div>
 

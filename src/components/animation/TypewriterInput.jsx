@@ -20,12 +20,9 @@ const examples = [
 const RESUME_DELAY = 12000
 
 
-function TypewriterInput() {
+function TypewriterInput({ value = '', onChange = () => {} }) {
 
   const [displayText, setDisplayText] =
-    useState('')
-
-  const [inputValue, setInputValue] =
     useState('')
 
   const [isPaused, setIsPaused] =
@@ -78,7 +75,7 @@ function TypewriterInput() {
     }
 
 
-    if (inputValue.trim()) {
+    if (value.trim()) {
       return
     }
 
@@ -169,7 +166,7 @@ function TypewriterInput() {
     isDeleting,
     exampleIndex,
     isPaused,
-    inputValue,
+    value,
   ])
 
 
@@ -204,16 +201,8 @@ function TypewriterInput() {
   }
 
 
-  const handleChange = (
-    event
-  ) => {
-
-    const value =
-      event.target.value
-
-
-    setInputValue(value)
-
+  const handleChange = (event) => {
+    onChange(event)
     pauseAnimation()
 
   }
@@ -222,7 +211,7 @@ function TypewriterInput() {
   const handleBlur = () => {
 
     if (
-      !inputValue.trim()
+      !value.trim()
     ) {
 
       scheduleResume()
@@ -246,7 +235,7 @@ function TypewriterInput() {
       <div className="typewriter-input-field">
 
         {!isPaused &&
-          !inputValue && (
+          !value && (
 
           <span
             className="
@@ -280,7 +269,7 @@ function TypewriterInput() {
 
         <input
           type="text"
-          value={inputValue}
+          value={value}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}

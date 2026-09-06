@@ -6,8 +6,11 @@ import {
 
 import Reveal from '../../components/animation/Reveal'
 import { Link } from 'react-router-dom'
+import { useReport } from '../../context/ReportContext'
 
 function ReportSuccessPage() {
+
+  const { reportResult } = useReport()
 
   return (
 
@@ -40,22 +43,19 @@ function ReportSuccessPage() {
 
 
           <div className="token-box">
-
             <span>
               TOKEN LAPORAN
             </span>
 
             <strong>
-              JAGA-2026-00023
+              {reportResult ? `JAGA-${reportResult.report_id}` : '-'}
             </strong>
 
             <button>
               <Copy size={16} />
               Salin Token
             </button>
-
           </div>
-
 
           <div className="success-notice">
 
