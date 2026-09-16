@@ -1,237 +1,143 @@
+import { useState, useEffect } from 'react'
 import {
-  CheckCircle2,
-  Clock3,
   Search,
-  ShieldCheck
+  ShieldCheck,
+  Clock3,
+  CheckCircle2,
+  XCircle
 } from 'lucide-react'
 
 import Reveal from '../../components/animation/Reveal'
+import { useSearchParams, Link } from 'react-router-dom'
 import { Badge, Card } from '../../components/common/Ui'
 
-const timeline = [
-  {
-    title: 'Laporan Dikirim',
-    date: '23 Agustus 2026 • 14:32',
-    description:
-      'Laporan berhasil diterima oleh sistem.',
-    done: true
-  },
-
-  {
-    title: 'Laporan Diterima',
-    date: '23 Agustus 2026 • 14:33',
-    description:
-      'Data laporan masuk ke antrian pemeriksaan.',
-    done: true
-  },
-
-  {
-    title: 'Sedang Diverifikasi',
-    date: 'Saat ini',
-    description:
-      'Tim verifikator sedang memeriksa informasi dan bukti.',
-    done: true,
-    current: true
-  },
-
-  {
-    title: 'Selesai',
-    date: 'Menunggu',
-    description:
-      'Hasil verifikasi akan tersedia setelah proses selesai.',
-    done: false
-  }
-]
+const statusConfig = {
+  pending: { label: 'Menunggu Verifikasi', tone: 'warning', icon: Clock3 },
+  diterima: { label: 'Diterima & Terverifikasi', tone: 'safe', icon: CheckCircle2 },
+  ditolak: { label: 'Ditolak', tone: 'danger', icon: XCircle },
+}
 
 function ReportStatusPage() {
+  const [searchParams] = useSearchParams()
+  const reportId = searchParams.get('id') || ''
+
+  const [result, setResult] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!reportId) {
+      setError('Tidak ada nomor laporan yang dicari.')
+      setIsLoading(false)
+      return
+    }
+
+    const fetchStatus = async () => {
+      setIsLoading(true)
+      setError('')
+
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL
+        const response = await fetch(`${apiUrl}/report/${encodeURIComponent(reportId)}/status`)
+
+        const json = await response.json()
+
+        if (!response.ok) {
+          throw new Error(json.message || 'Laporan tidak ditemukan')
+        }
+
+        setResult(json.data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchStatus()
+  }, [reportId])
+
+  if (isLoading) {
+    return (
+      <div className="page">
+        <div className="container status-container">
+          <div className="page-header">
+            <h1>Memeriksa...</h1>
+            <p>Mohon tunggu sebentar.</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !result) {
+    return (
+      <div className="page">
+        <div className="container status-container">
+          <div className="page-header">
+            <h1>Tidak Ditemukan</h1>
+            <p>{error || 'Laporan dengan nomor ini tidak ditemukan.'}</p>
+          </div>
+          <Link to="/status-laporan" className="btn btn-primary">
+            Coba Nomor Lain
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  const statusInfo = statusConfig[result.status] || { label: result.status, tone: 'warning', icon: Clock3 }
+  const StatusIcon = statusInfo.icon
 
   return (
-
     <div className="page">
-
       <div className="container status-container">
 
         <div className="page-header">
-
-          <h1>
-            Status Laporan
-          </h1>
-
-          <p>
-            Pantau perkembangan laporan
-            menggunakan token kamu.
-          </p>
-
+          <h1>Status Laporan</h1>
+          <p>Pantau perkembangan laporan menggunakan nomor laporan kamu.</p>
         </div>
 
         <Reveal>
         <Card className="status-header-card">
-
           <div>
-
-            <span className="muted">
-              TOKEN LAPORAN
-            </span>
-
-            <h2>
-              JAGA-2026-00023
-            </h2>
-
+            <span className="muted">NOMOR LAPORAN</span>
+            <h2>{result.report_id}</h2>
           </div>
-
-          <Badge tone="warning">
-            Sedang Diverifikasi
-          </Badge>
-
+          <Badge tone={statusInfo.tone}>{statusInfo.label}</Badge>
         </Card>
         </Reveal>
 
         <Reveal delay={120}>
-        <div className="status-grid">
-
-          <Card>
-
-            <div className="status-section-heading">
-
-              <div>
-
-                <span className="muted">
-                  APLIKASI
-                </span>
-
-                <h2>
-                  DanaCepatt
-                </h2>
-
-              </div>
-
-              <ShieldCheck
-                color="#079B62"
-              />
-
+        <Card>
+          <div className="status-section-heading">
+            <div>
+              <span className="muted">APLIKASI</span>
+              <h2>{result.reported_name}</h2>
             </div>
+            <StatusIcon color="#079B62" />
+          </div>
 
-
-            <div className="status-meta">
-
-              <div>
-                <span>
-                  Kondisi
-                </span>
-
-                <strong>
-                  Sudah mendapat ancaman
-                </strong>
-              </div>
-
-              <div>
-                <span>
-                  Pelapor
-                </span>
-
-                <strong>
-                  Anonim
-                </strong>
-              </div>
-
-              <div>
-                <span>
-                  Bukti
-                </span>
-
-                <strong>
-                  2 file
-                </strong>
-              </div>
-
+          <div className="status-meta">
+            <div>
+              <span>Kategori</span>
+              <strong>{result.category}</strong>
             </div>
-
-          </Card>
-
-
-          <Card>
-
-            <div className="status-section-heading">
-
-              <h3>
-                Perjalanan Laporan
-              </h3>
-
-              <Clock3
-                size={20}
-                color="#F59E0B"
-              />
-
+            <div>
+              <span>Terakhir diperbarui</span>
+              <strong>{new Date(result.updated_at).toLocaleString('id-ID')}</strong>
             </div>
-
-
-            <div className="status-timeline">
-
-              {timeline.map((item) => (
-
-                <div
-                  className={
-                    `status-timeline-item
-                    ${item.current ? 'current' : ''}
-                    ${item.done ? 'done' : ''}`
-                  }
-                  key={item.title}
-                >
-
-                  <div className="status-timeline-dot">
-
-                    {item.done
-                      ? <CheckCircle2 size={17} />
-                      : <span />
-                    }
-
-                  </div>
-
-
-                  <div>
-
-                    <strong>
-                      {item.title}
-                    </strong>
-
-                    <small>
-                      {item.date}
-                    </small>
-
-                    <p>
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </Card>
-
-        </div>
+          </div>
+        </Card>
         </Reveal>
 
-
         <div className="status-help">
-
           <Search size={19} />
-
-          <span>
-            Status pada halaman ini adalah
-            contoh tampilan frontend dan nantinya
-            akan berasal dari backend.
-          </span>
-
+          <span>Status ini diambil langsung dari sistem JAGA secara real-time.</span>
         </div>
 
       </div>
-
     </div>
-
   )
 }
 

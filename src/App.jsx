@@ -32,6 +32,8 @@
   import ReportDetailPage from './pages/admin/ReportDetailPage'
   import ThreatEntitiesPage from './pages/admin/ThreatEntitiesPage'
 
+  import ProtectedRoute from './pages/auth/ProtectedRoute'
+
   import { ReportProvider } from './context/ReportContext'
 
   function App() {
@@ -110,29 +112,11 @@
         />
 
 
-        {/* ADMIN / VERIFIKATOR */}
-        <Route element={<AdminLayout />}>
-
-          <Route
-            path="/admin"
-            element={<AdminDashboardPage />}
-          />
-
-          <Route
-            path="/admin/laporan"
-            element={<ReportsPage />}
-          />
-
-          <Route
-            path="/admin/laporan/:id"
-            element={<ReportDetailPage />}
-          />
-
-          <Route
-            path="/admin/threat-entities"
-            element={<ThreatEntitiesPage />}
-          />
-
+        <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          <Route path="/admin" element={<AdminDashboardPage />} />
+          <Route path="/admin/laporan" element={<ReportsPage />} />
+          <Route path="/admin/laporan/:id" element={<ReportDetailPage />} />
+          <Route path="/admin/threat-entities" element={<ThreatEntitiesPage />} />
         </Route>
 
       </Routes>

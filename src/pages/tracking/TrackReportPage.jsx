@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Search,
   TicketCheck,
@@ -5,27 +6,24 @@ import {
 } from 'lucide-react'
 
 import Reveal from '../../components/animation/Reveal'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function TrackReportPage() {
+  const [reportId, setReportId] = useState('')
+  const navigate = useNavigate()
+
+  const handleTrack = () => {
+    if (!reportId.trim()) return
+    navigate(`/status-laporan/detail?id=${encodeURIComponent(reportId)}`)
+  }
 
   return (
-
     <div className="page">
-
       <div className="container tracking-container">
 
         <div className="page-header">
-
-          <h1>
-            Lacak Status Laporan
-          </h1>
-
-          <p>
-            Masukkan token yang kamu dapatkan
-            setelah mengirim laporan.
-          </p>
-
+          <h1>Lacak Status Laporan</h1>
+          <p>Masukkan nomor laporan yang kamu dapatkan setelah mengirim laporan.</p>
         </div>
 
         <Reveal>
@@ -35,54 +33,41 @@ function TrackReportPage() {
             <TicketCheck size={34} />
           </div>
 
-          <h2>
-            Masukkan Token Laporan
-          </h2>
+          <h2>Masukkan Nomor Laporan</h2>
 
           <p>
-            Contoh:
-            <strong>
-              JAGA-2026-00023
-            </strong>
+            Contoh: <strong>12</strong>
           </p>
 
-
           <div className="search-box tracking-search">
-
             <Search size={20} />
 
             <input
-              placeholder="JAGA-2026-00023"
+              placeholder="Contoh: 12"
+              value={reportId}
+              onChange={(e) => setReportId(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleTrack()}
             />
 
-            <Link
-              to="/status-laporan/detail"
+            <button
+              type="button"
               className="btn btn-primary"
+              onClick={handleTrack}
             >
               Lacak
-            </Link>
-
+            </button>
           </div>
 
-
           <div className="tracking-security">
-
             <ShieldCheck size={19} />
-
-            <span>
-              Tidak perlu login untuk melihat
-              status laporan menggunakan token.
-            </span>
-
+            <span>Tidak perlu login untuk melihat status laporan menggunakan nomor laporan.</span>
           </div>
 
         </div>
         </Reveal>
 
       </div>
-
     </div>
-
   )
 }
 

@@ -1,272 +1,123 @@
-import {
-  ShieldAlert,
-  Search,
-  Smartphone,
-  Phone,
-  TrendingUp
-} from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Search, Smartphone, ShieldAlert } from 'lucide-react'
 
-import {threatEntities} from '../../data/adminDummy'
-import Reveal from '../../components/animation/Reveal'
+const categoryLabels = {
+  pinjol_ilegal: 'Pinjol Ilegal',
+  judi_online: 'Judi Online',
+  investasi_bodong: 'Investasi Bodong',
+  lainnya: 'Lainnya',
+}
+
+function getRiskLevel(reportCount) {
+  if (reportCount >= 20) return { label: 'Tinggi', className: 'high' }
+  if (reportCount >= 5) return { label: 'Sedang', className: 'medium' }
+  return { label: 'Rendah', className: 'low' }
+}
 
 function ThreatEntitiesPage() {
+  const [entities, setEntities] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+
+  useEffect(() => {
+    const fetchThreats = async () => {
+      setIsLoading(true)
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL
+        const response = await fetch(`${apiUrl}/check/threats`)
+        const json = await response.json()
+        setEntities(json.data || [])
+      } catch (err) {
+        console.error('Gagal memuat threat entities:', err)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchThreats()
+  }, [])
+
+  const filteredEntities = entities.filter((entity) =>
+    !searchTerm || entity.Name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const totalEntities = entities.length
 
   return (
-
     <div>
 
       <div className="admin-page-header">
-
         <div>
-
-          <span>
-            THREAT INTELLIGENCE
-          </span>
-
-          <h1>
-            Threat Entities
-          </h1>
-
-          <p>
-            Entitas yang teridentifikasi dari
-            laporan masyarakat.
-          </p>
-
+          <span>THREAT INTELLIGENCE</span>
+          <h1>Threat Entities</h1>
+          <p>Entitas yang teridentifikasi dari laporan masyarakat.</p>
         </div>
-
       </div>
 
-      <Reveal>
-      <div className="entity-summary-grid">
-
-        <div className="entity-summary">
-
-          <ShieldAlert />
-
+      <div className="admin-stat-grid">
+        <div className="stat-card">
+          <ShieldAlert size={22} />
           <div>
-
-            <span>
-              Total Entitas
-            </span>
-
-            <strong>
-              247
-            </strong>
-
+            <span>Total Entitas</span>
+            <strong>{totalEntities}</strong>
           </div>
-
         </div>
-
-
-        <div className="entity-summary">
-
-          <TrendingUp />
-
-          <div>
-
-            <span>
-              Entitas Baru
-            </span>
-
-            <strong>
-              +18
-            </strong>
-
-          </div>
-
-        </div>
-
-
-        <div className="entity-summary">
-
-          <Smartphone />
-
-          <div>
-
-            <span>
-              Aplikasi
-            </span>
-
-            <strong>
-              193
-            </strong>
-
-          </div>
-
-        </div>
-
-
-        <div className="entity-summary">
-
-          <Phone />
-
-          <div>
-
-            <span>
-              Nomor
-            </span>
-
-            <strong>
-              54
-            </strong>
-
-          </div>
-
-        </div>
-
       </div>
-      </Reveal>
 
-      <Reveal delay={150}>
-      <div className="admin-panel entity-panel">
+      <div className="admin-panel">
 
-        <div className="entity-toolbar">
-
+        <div className="report-filter-bar">
           <div className="admin-search">
-
             <Search size={17} />
-
             <input
               placeholder="Cari entitas..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-
           </div>
-
-          <select className="admin-filter">
-
-            <option>
-              Semua Jenis
-            </option>
-
-            <option>
-              Aplikasi
-            </option>
-
-            <option>
-              Nomor
-            </option>
-
-          </select>
-
         </div>
 
-
-        <div className="admin-table-wrapper">
-
-          <table className="admin-table">
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  ENTITAS
-                </th>
-
-                <th>
-                  JENIS
-                </th>
-
-                <th>
-                  LAPORAN
-                </th>
-
-                <th>
-                  RISIKO
-                </th>
-
-                <th>
-                  STATUS
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-              {threatEntities.map((entity) => (
-
-                <tr key={entity.name}>
-
-                  <td>
-
-                    <div className="entity-name">
-
-                      <div className="entity-avatar">
-
-                        {entity.type === 'Aplikasi'
-                          ? <Smartphone size={16} />
-                          : <Phone size={16} />
-                        }
-
-                      </div>
-
-                      <strong>
-                        {entity.name}
-                      </strong>
-
-                    </div>
-
-                  </td>
-
-
-                  <td>
-                    {entity.type}
-                  </td>
-
-
-                  <td>
-                    <strong>
-                      {entity.reports}
-                    </strong>
-                  </td>
-
-
-                  <td>
-
-                    <span
-                      className={
-                        `admin-risk ${entity.risk}`
-                      }
-                    >
-                      {entity.risk === 'high'
-                        ? 'Tinggi'
-                        : 'Sedang'}
-                    </span>
-
-                  </td>
-
-
-                  <td>
-
-                    <span
-                      className={
-                        entity.status === 'Terverifikasi'
-                          ? 'admin-status verified'
-                          : 'admin-status verification'
-                      }
-                    >
-                      {entity.status}
-                    </span>
-
-                  </td>
-
+        {isLoading ? (
+          <p style={{ padding: 20 }}>Memuat data...</p>
+        ) : (
+          <div className="admin-table-wrapper">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>ENTITAS</th>
+                  <th>KATEGORI</th>
+                  <th>LAPORAN</th>
+                  <th>RISIKO</th>
                 </tr>
+              </thead>
 
-              ))}
-
-            </tbody>
-
-          </table>
-
-        </div>
+              <tbody>
+                {filteredEntities.map((entity) => {
+                  const risk = getRiskLevel(entity.ReportCount)
+                  return (
+                    <tr key={entity.ID}>
+                      <td>
+                        <Smartphone size={16} style={{ marginRight: 8 }} />
+                        {entity.Name}
+                      </td>
+                      <td>{categoryLabels[entity.Category] || entity.Category}</td>
+                      <td>{entity.ReportCount}</td>
+                      <td>
+                        <span className={`admin-risk ${risk.className}`}>
+                          {risk.label}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
 
       </div>
-      </Reveal>
-    </div>
 
+    </div>
   )
 }
 
